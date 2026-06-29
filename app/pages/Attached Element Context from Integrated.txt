@@ -1,0 +1,173 @@
+Attached Element Context from Integrated Browser
+
+Element: section.cave-section
+
+URL: http://localhost:3000/
+
+HTML Path: div#__nuxt > div.min-h-screen.bg-[#12031e].text-slate-100.overflow-hidden > main.mx-auto.relative.z-10.flex.min-h-screen.max-w-7xl.flex-col.px-6.py-16.lg:px-12 > section.cave-section
+
+Outer HTML:
+```html
+<section class="cave-section" style="--scroll-percent: 0.43977591036414565;" data-v-02281a80=""><div class="cave-glow" data-v-02281a80=""></div><!-- Cave Top Mountains (Stalactites) --><div class="cave-mountain-back" data-v-02281a80=""></div><div class="cave-mountain-mid" data-v-02281a80=""></div><div class="cave-mountain-front" data-v-02281a80=""></div><!-- Cave Bottom Mountains (Stalagmites) --><div class="cave-mountain-bottom-back" data-v-02281a80=""></div><div class="cave-mountain-bottom-mid" data-v-02281a80=""></div><div class="cave-mountain-bottom-front" data-v-02281a80=""></div><div class="crystal crystal1" data-v-02281a80=""></div><div class="crystal crystal2" data-v-02281a80=""></div><div class="crystal crystal3" data-v-02281a80=""></div><div class="crystal crystal4" data-v-02281a80=""></div><div class="crystal crystal5" data-v-02281a80=""></div><div class="relative z-10 max-w-6xl mx-auto py-32" data-v-02281a80=""><h2 class="text-6xl font-black text-cyan-200" data-v-02281a80=""> Journey Underground </h2><p class="mt-8 text-xl text-cyan-100 max-w-3xl" data-v-02281a80=""> Beneath the mountains lies the foundation of my experience— enterprise software, manufacturing systems, automation, AI tools, and modern web development. </p><!-- Put your Experience cards here --></div><div class="cave-exit" data-v-02281a80=""></div></section>
+```
+
+Dimensions:
+- top: 511px
+- left: -830px
+- width: 3552px
+- height: 2835px
+
+CSS:
+```css
+element { --scroll-percent: 0.43977591036414565; }
+*, ::before, ::after { --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ; }
+*, ::before, ::after { box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */ }
+section[data-v-02281a80] { letter-spacing: 0.01em; }
+.cave-section[data-v-02281a80] { position: relative;
+
+  min-height: 350vh;
+  width: 300%;
+  margin-left: -100%;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg,
+
+      #132b5c 0%,
+
+      #081428 15%,
+
+      #050b14 35%,
+
+      #020407 55%,
+
+      #000000 75%,
+
+      #000000 100%);
+
+  z-index: 20; }
+
+/* Pseudo-elements */
+::before, ::after { --tw-content: ''; }
+.cave-section[data-v-02281a80]::before { content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  background:
+
+    radial-gradient(ellipse at center,
+
+      transparent 20%,
+
+      rgba(0, 0, 0, .15) 30%,
+
+      rgba(0, 0, 0, .35) 45%,
+
+      rgba(0, 0, 0, .65) 60%,
+
+      rgba(0, 0, 0, .95) 80%,
+
+      black 100%);
+
+  pointer-events: none; }
+
+/* Inherited */
+.text-slate-100 { color: rgb(241 245 249 / var(--tw-text-opacity, 1)) }
+body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #f8f0ff }
+html, :host { line-height: 1.5 }
+
+/* Resolved values */
+border: 0px solid rgb(229, 231, 235);
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgba(0, 0, 0, 0);
+background-image: linear-gradient(rgb(19, 43, 92) 0%, rgb(8, 20, 40) 15%, rgb(5, 11, 20) 35%, rgb(2, 4, 7) 55%, rgb(0, 0, 0) 75%, rgb(0, 0, 0) 100%);
+background-origin: padding-box;
+background-position-x: 0%;
+background-position-y: 0%;
+background-repeat: repeat;
+background-size: auto;
+bottom: 0px;
+box-sizing: border-box;
+color: rgb(241, 245, 249);
+content: normal;
+display: block;
+font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+font-feature-settings: normal;
+height: 2835px;
+left: 0px;
+letter-spacing: 0.16px;
+line-height: 24px;
+margin-left: -1184px;
+min-height: 2835px;
+overflow-x: hidden;
+overflow-y: hidden;
+pointer-events: auto;
+position: relative;
+right: 0px;
+tab-size: 4;
+top: 0px;
+unicode-bidi: isolate /*UA*/;
+width: 3552px;
+z-index: 20;
+
+/* CSS variables */
+--tw-text-opacity: 1;
+```
