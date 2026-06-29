@@ -795,9 +795,9 @@ onUnmounted(() => {
   left: 38%;
 
   bottom: 197px;
-  scale: 0.6;
+  scale: 0.9;
 
-  transform: scale(0.6);
+  transform: scale(0.9);
 
 }
 
