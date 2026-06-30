@@ -88,7 +88,7 @@ onUnmounted(() => {
             
             management · Videographer <br><br></p>
           <div class="inline-flex items-center gap-8">
-            <img src="/img/profile.png" alt="Joshua Bederaux-Cayne"
+            <img src="/img/Profile.png" alt="Joshua Bederaux-Cayne"
               class="w-24 h-24 rounded-full object-cover border-4 border-pink-400 shadow-xl object-position-left">
             </img>
             <h1 class="text-4xl font-black tracking-[-0.04em] text-pink-300 sm:text-3xl lg:text-7xl">
