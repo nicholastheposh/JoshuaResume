@@ -22,3 +22,10 @@ logs
 .env
 .env.*
 !.env.example
+
+# Prevent accidental nested project artifacts under source directories
+app/pages/node_modules
+app/pages/.nuxt
+app/pages/.output
+app/pages/dist
+app/pages/package-lock.json

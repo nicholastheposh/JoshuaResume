@@ -1,7 +1,6 @@
 ```vue
 <script setup lang="ts">
 import { useHead } from '#imports'
-import profile from '~/assets/images/profile.png'
 useHead({
   title: 'Joshua Bederaux-Cayne | Nuxt Resume site',
   meta: [
@@ -16,7 +15,7 @@ useHead({
   link: [
     {
       rel: 'icon',
-      href: 'JoshuaResumeWeb\JoshuaResume\app\pages\img\Screenshot 2026-06-29 at 02-20-11 Instagram.png'
+      href: '/img/Profile.png'
     }
   ]
 })
@@ -86,6 +85,7 @@ onUnmounted(() => {
 
         <div class="shadow-panel-big space-y-30 text-left py-16 lg:py-20">
           <p class="text-sm uppercase tracking-[0.4em] text-pink-300/70"> Full-stack webdeveloper · Manufacturing Data
+            
             management · Videographer <br><br></p>
           <div class="inline-flex items-center gap-8">
             <img src="/img/profile.png" alt="Joshua Bederaux-Cayne"
@@ -200,37 +200,41 @@ onUnmounted(() => {
         <div class="cave-mountain-bottom-mid"></div>
         <div class="cave-mountain-bottom-front"></div>
 
-        <div class="crystal crystal1">
-          <div class="crystal-label">Managed<br>
-            internal <br> Financial tool webapp, My main role was project manager, balancing offshore teams workload and
-            financial
-            <br> Customers
+        <div class="crystal-field">
+          <div class="crystal crystal1">
+            <div class="crystal-label">Managed<br>
+              internal <br> Financial tool webapp, My main role was project manager, balancing offshore teams workload and
+              financial
+              <br> Customers
+            </div>
           </div>
-        </div>
-        <div class="crystal crystal2">
-          <div class="crystal-label"><br><br><br>Manufacturing <br> data czar, integrated data from Quality SPC
-            software, Azure Data lake, Computer Vision systems, PLC's, and Manufacturing execution <br>software </div>
-        </div>
-        <div class="crystal crystal3">
-          <div class="crystal-label"><br><br>Developed <br>a data transfer <br> from am engineering problem tracking
-            Node.js/Sharepoint<br> web Application <br>into the company wide knowledge base <br>filtering out private
-            <br>communications
+
+          <div class="crystal crystal2">
+            <div class="crystal-label"><br><br><br>Manufacturing <br> data czar, integrated data from Quality SPC
+              software, Azure Data lake, Computer Vision systems, PLC's, and Manufacturing execution <br>software </div>
           </div>
-        </div>
-        <div class="crystal crystal4">
-          <div class="crystal-label">Co-Developed <br>a workorder tracking system to replace a system that would have
-            cost more than a house to upgrade</div>
-        </div>
-        <div class="crystal crystal5">
-          <div class="crystal-label font-weight 2000">Videography<br><br><br><br></div>
-          <blockquote class="instagram-media" data-instgrm-captioned
-            data-instgrm-permalink="https://www.instagram.com/reel/DUTG1VhClql/?utm_source=ig_embed&amp;utm_campaign=loading"
-            data-instgrm-version="14"
-            style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-            <div style="padding:16px;"> <a
-                href="https://www.instagram.com/reel/DUTG1VhClql/?utm_source=ig_embed&amp;utm_campaign=loading"
-                style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;"
-                target="_blank">
+          <div class="crystal crystal3">
+            <div class="crystal-label"><br><br>Developed <br>a data transfer <br> from am engineering problem tracking
+              Node.js/Sharepoint<br> web Application <br>into the company wide knowledge base <br>filtering out private
+              <br>communications
+            </div>
+          </div>
+
+          <div class="crystal crystal4">
+            <div class="crystal-label">Co-Developed <br>a workorder tracking system to replace a system that would have
+              cost more than a house to upgrade</div>
+          </div>
+
+          <div class="crystal crystal5">
+            <div class="crystal-label font-weight 2000">Videography<br><br><br><br></div>
+            <blockquote class="instagram-media" data-instgrm-captioned
+              data-instgrm-permalink="https://www.instagram.com/reel/DUTG1VhClql/?utm_source=ig_embed&amp;utm_campaign=loading"
+              data-instgrm-version="14"
+              style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+              <div style="padding:16px;"> <a
+                  href="https://www.instagram.com/reel/DUTG1VhClql/?utm_source=ig_embed&amp;utm_campaign=loading"
+                  style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;"
+                  target="_blank">
                 <div style=" display: flex; flex-direction: row; align-items: center;">
                   <div
                     style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;">
@@ -312,16 +316,16 @@ onUnmounted(() => {
                   style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;"
                   target="_blank">A post shared by Kid (Coach Nuni) (@kidsofthesky)</a>
               </p>
-            </div>
-          </blockquote>
-
+              </div>
+            </blockquote>
+          </div>
         </div>
 
-        <div class="relative z-10 max-w-3xl mx-auto py-32 px-6 text-center">
+        <div class="cave-intro relative z-10 max-w-3xl mx-auto py-32 px-6 text-center">
 
           <div class="relative z-10 max-w-2xl mx-auto py-16 md:py-32 px-4 sm:px-6 text-center">
 
-            <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-cyan-200 leading-tight">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-semibold font-black text-cyan-400 leading-tight">
               Joshua's<br>allegory of the cave
             </h2>
 
@@ -483,7 +487,7 @@ onUnmounted(() => {
 
   0%,
   100% {
-    transform: translateY(-100);
+    transform: translateY(-100px);
   }
 
   50% {
@@ -529,6 +533,8 @@ onUnmounted(() => {
 .cave-section {
 
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   min-height: 350vh;
   width: 300%;
@@ -556,7 +562,7 @@ onUnmounted(() => {
 /* Cave Top Mountains (Stalactites - upside down) */
 .cave-mountain-back {
   position: absolute;
-  top: 10;
+  top: 10px;
   left: 0;
   right: 0;
   height: 140vh;
@@ -568,7 +574,7 @@ onUnmounted(() => {
 
 .cave-mountain-mid {
   position: absolute;
-  top: 20;
+  top: 20px;
   left: 0;
   right: 0;
   height: 140vh;
@@ -580,7 +586,7 @@ onUnmounted(() => {
 
 .cave-mountain-front {
   position: absolute;
-  top: 30;
+  top: 30px;
   left: 0;
   right: 0;
   height: 140vh;
@@ -641,7 +647,7 @@ onUnmounted(() => {
   overflow: hidden;
 
   background:
-    linear-gradient(to cave,
+    linear-gradient(to bottom,
       transparent 0%,
       #7d185e 20%,
       #4f0f63 45%,
@@ -675,12 +681,14 @@ onUnmounted(() => {
 
 
 .crystal {
-
-  position: absolute;
-
-  width: 440px;
-
-  height: 440px;
+  position: relative;
+  --tilt: 0deg;
+  width: min(440px, 88vw);
+  aspect-ratio: 1 / 1;
+  min-height: 340px;
+  justify-self: center;
+  transform: rotate(var(--tilt));
+  will-change: transform;
 
   clip-path: polygon(50% 0,
       100% 40%,
@@ -695,12 +703,31 @@ onUnmounted(() => {
       #4aa8ff,
       #003f9f);
 
-
-
   box-shadow:
     0 0 25px #5ecfff,
     0 0 70px #2e9eff;
+}
 
+.crystal-field {
+  position: relative;
+  order: 2;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  width: min(1200px, 92vw);
+  margin: 4rem auto 6rem;
+  padding: 0 1rem;
+}
+
+.cave-intro {
+  order: 1;
+}
+
+@media (min-width: 960px) {
+  .crystal-field {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .crystal-label {
@@ -721,84 +748,53 @@ onUnmounted(() => {
       0 40%);
   color: #000000;
   font-size: 1.2rem;
-  font-family: 'Courier New', Courier, monospace, ;
+  font-family: 'Courier New', Courier, monospace;
   font-stretch: condensed;
   font-variant: ruby;
-  font-weight: 3000;
+  font-weight: 400;
   line-height: 1.15;
-  font-style: Bold oblique(var(--scroll-percent * 120deg));
   letter-spacing: 0.13em;
   backdrop-filter: hue-rotate(calc(var(--scroll-percent)*var(--scroll-percent) * -60deg)) saturate(1.5) blur(2px);
   pointer-events: none;
-  animation: floatCrystalLabel 5s reverse ease-in-out infinite;
-  filter: drop-shadow(0 0 10 .75rem rgb(0, 43, 124));
+  filter: drop-shadow(0 0 0.75rem rgb(0, 43, 124));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 
 
 .crystal1 {
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
-  left: 35%;
-  top: 600px;
-
-
-  transform: rotate(-8deg) translateX(calc(-50% - var(--scroll-percent) * 100px)) scale(calc(0.5 + var(--scroll-percent) * 300px));
-
+  --tilt: -4deg;
 }
 
 .crystal2 {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  right: 35%;
-
-  top: 1000px;
-
-  transform: translateX(calc(-50% - var(--scroll-percent) * 120px)) scale(calc(0.75 + var(--scroll-percent) * 0.85)), top(var(--scroll-percent) * 300px);
-
-  animation: none;
-
+  --tilt: 3deg;
 }
 
 .crystal3 {
-
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
-  left: 45%;
-
-  bottom: 700px;
-
-  transform: scale(1.4);
-
+  --tilt: -2deg;
 }
 
 .crystal4 {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  right: 32%;
-
-
-  bottom: 1200px;
-
-  transform: translate-scale(var(--scroll) * 100, var(--scroll) * 50);
-
+  --tilt: 2deg;
 }
 
 .crystal5 {
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
-  left: 38%;
+  --tilt: 0deg;
+}
 
-  bottom: 197px;
-  scale: 0.9;
 
-  transform: scale(0.9);
+@media (min-width: 960px) {
+  .crystal2,
+  .crystal4 {
+    margin-top: 4rem;
+  }
 
+  .crystal5 {
+    grid-column: 1 / -1;
+  }
 }
 
 
@@ -812,14 +808,12 @@ onUnmounted(() => {
 
   0%,
   100% {
-
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) rotate(var(--tilt));
 
   }
 
   50% {
-
-    transform: translateY(-12px);
+    transform: translate3d(0, -12px, 0) rotate(var(--tilt));
 
   }
 
@@ -899,7 +893,7 @@ onUnmounted(() => {
     0 0 240px white,
     0 0 500px white;
 
-  transform: translateX(-50%) translateY(calc(clamp(80px - var(--scroll-percent) * 180px, 40px, 80px) + clamp((var(--scroll-percent) - 0.98) * 140px, 0px, 140px))) scale(calc(0.3 + var(--scroll-percent) * 3));
+  transform: translateX(-50%) translateY(calc(80px - var(--scroll-percent) * 180px)) scale(calc(0.3 + var(--scroll-percent) * 3));
 
   opacity: clamp(calc((var(--scroll-percent) - 0.50) * 1.6), 0, 1);
 
