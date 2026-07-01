@@ -114,10 +114,10 @@ onUnmounted(() => {
             class="rounded-2xl bg-pink-500 px-8 py-4 text-base font-semibold text-slate-950 shadow-2xl shadow-pink-500/30 transition duration-300 hover:-translate-y-1 hover:bg-pink-400">
             View Projects
           </NuxtLink>
-          <NuxtLink href="resume/Resume6-3.pdf" download="Joshua B-Cayne Resume.pdf" external target="_blank"
+          <a href="/resume/Resume%206-3.pdf" download="Joshua_Bederaux-Cayne_Resume.pdf"
             class="rounded-2xl border border-pink-500/30 bg-slate-900/85 px-8 py-4 text-base font-semibold text-pink-200 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:bg-slate-900">
             Resume
-          </NuxtLink>
+          </a>
         </div>
       </section>
 
