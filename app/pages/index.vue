@@ -47,6 +47,7 @@ const techStack = [
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const scrollPercent = ref(0)
+const hasOpenedCaveExit = ref(false)
 
 
 const updateScroll = () => {
@@ -56,6 +57,11 @@ const updateScroll = () => {
   // Prevent division by zero if the page isn't scrollable
   if (docHeight > 0) {
     scrollPercent.value = scrollTop / docHeight
+
+    // Trigger the cave exit once near the bottom and keep it opened.
+    if (!hasOpenedCaveExit.value && scrollPercent.value >= 0.82) {
+      hasOpenedCaveExit.value = true
+    }
   }
 }
 
@@ -78,7 +84,7 @@ onUnmounted(() => {
     <main class="mx-auto relative z-10 flex min-h-screen max-w-7xl flex-col px-6 py-16 lg:px-12">
       <section class="flex flex-1 flex-col items-start justify-center gap-14 text-left py-16 lg:py-20">
         <span
-          class="inline-flex items-center gap-3 rounded-full border border-pink-500/40 bg-slate-900/85 px-5 py-3 text-xs uppercase tracking-[0.28em] text-pink-300 shadow-2xl shadow-pink-500/10 backdrop-blur-lg">
+          class="inline-flex items-center gap-3 rounded-full border border-pink-500/40 bg-slate-900/85 px-5 py-3 text-xs uppercase tracking-[0.28em] text-pink-300 shadow-2xl shadow-pink-500/10">
           <span class="h-2.5 w-2.5 rounded-full bg-pink-400 animate-pulse"></span>
           Available for Opportunities
         </span>
@@ -110,10 +116,10 @@ onUnmounted(() => {
 
 
         <div class="flex flex-wrap justify-start gap-4">
-          <NuxtLink to="#cave-section"
+          <a href="#cave-section"
             class="rounded-2xl bg-pink-500 px-8 py-4 text-base font-semibold text-slate-950 shadow-2xl shadow-pink-500/30 transition duration-300 hover:-translate-y-1 hover:bg-pink-400">
             View Projects
-          </NuxtLink>
+          </a>
           <a href="/resume/Resume%206-3.pdf" download="Joshua_Bederaux-Cayne_Resume.pdf"
             class="rounded-2xl border border-pink-500/30 bg-slate-900/85 px-8 py-4 text-base font-semibold text-pink-200 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:bg-slate-900">
             Resume
@@ -185,7 +191,7 @@ onUnmounted(() => {
       </section>
       <section class="mountain-transition"></section>
 
-      <section class="cave-section" :style="{
+      <section id="cave-section" class="cave-section" :style="{
         '--scroll-percent': scrollPercent
       }">
 
@@ -341,8 +347,56 @@ onUnmounted(() => {
           </div>
 
 
-          <div class="cave-exit"></div>
-          
+          <div class="cave-exit" :class="{ 'is-open': hasOpenedCaveExit }" aria-hidden="true"></div>
+
+      </section>
+
+      <section class="work-history-section" id="work-history">
+        <div class="work-history-shell">
+          <p class="work-history-kicker">Outside The Cave</p>
+          <h2 class="work-history-title">Work History</h2>
+
+          <article class="work-role">
+            <h3>IT Business &amp; Technical Analyst - Cummins Fuel Systems</h3>
+            <p class="work-date">June 2021 - August 2025</p>
+            <ul>
+              <li>Managed finance apps and SharePoint for Fuel Systems and Cummins Electronics, oversaw offshore teams, developed .NET and SQL updates, and handled user permissions.</li>
+              <li>Built a Quality Scoreboard for business units to identify and drill into defects and causes.</li>
+              <li>Oversaw Manufacturing Execution Systems and quality checkpoints, resolved code issues through decompiling, and rapidly delivered feature requests.</li>
+              <li>Expert in Prolink QC-Calc SPC software; upgraded gauges, organized data, created scripts to pull in external data, and produced training documentation.</li>
+              <li>Skilled in Cognex Designer, Power BI, PowerApps, and Power Automate; developed SSIS packages and quality tools, and collaborated to create a lab work order app.</li>
+            </ul>
+          </article>
+
+          <article class="work-role">
+            <h3>Video Editor - Memnon Archiving Services Inc., Bloomington Indiana</h3>
+            <p class="work-date">December 8th - May, 2021</p>
+            <ul>
+              <li>Editing, documenting, subtitling, and quality control on televised media.</li>
+              <li>Followed exacting standards for large clients including A&amp;E and Fox.</li>
+              <li>Maintained strong technical communication with coworkers while establishing new procedures.</li>
+            </ul>
+          </article>
+
+          <article class="work-role">
+            <h3>Cummins Midrange Engine Plant (CMEP), Columbus Indiana - Engine Block Machining Area</h3>
+            <p class="work-date">June 5th - August 9th, 2019</p>
+            <ul>
+              <li>Installed barring caps into engine blocks, expedited production flow, and handled materials.</li>
+              <li>Accelerated block-line output by preventing avoidable stoppages and stepping in across tasks as needed.</li>
+              <li>Identified machining errors and escalated issues quickly, preventing incorrect blocks from moving further into processing.</li>
+            </ul>
+          </article>
+
+          <article class="work-role compact">
+            <h3>Additional Roles</h3>
+            <p><strong>July 7th - Sept 27th, 2018:</strong> Indiana University Catering Kitchen, Bloomington Indiana - Cold Side Cook.</p>
+            <p><strong>February 26, 2017 - July 16, 2017:</strong> Indiana University / Manpower, Bloomington Indiana - Custodian.</p>
+            <p><strong>May 23, 2016 - August 30, 2016:</strong> Taco Bell, Bloomington Indiana.</p>
+            <p><strong>August 2014 - March 2015:</strong> Crew's Carwash, Columbus Indiana.</p>
+            <p><strong>May 2011:</strong> Internship at Nintendo of Australia, Scoresby Victoria.</p>
+          </article>
+        </div>
       </section>
     </main>
     <div :style="{ '--scroll-percent': scrollPercent }" class="background-scene">
@@ -882,21 +936,158 @@ onUnmounted(() => {
 .cave-exit {
 
   position: absolute;
-  bottom: 5vh;
+  bottom: -96px;
   left: 50%;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: white;
+  width: clamp(700px, 98vw, 1380px);
+  height: clamp(220px, 40vh, 380px);
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.96) 54%, rgba(255, 255, 255, 0.82) 100%);
   box-shadow:
-    0 0 120px white,
-    0 0 240px white,
-    0 0 500px white;
+    0 -20px 60px rgba(255, 255, 255, 0.75),
+    0 -40px 140px rgba(255, 255, 255, 0.5),
+    0 -80px 300px rgba(255, 255, 255, 0.35);
 
-  transform: translateX(-50%) translateY(calc(80px - var(--scroll-percent) * 180px)) scale(calc(0.3 + var(--scroll-percent) * 3));
+  transform: translateX(-50%) translateY(90px) scale(0.72);
 
-  opacity: clamp(calc((var(--scroll-percent) - 0.50) * 1.6), 0, 1);
+  opacity: 0;
+  overflow: hidden;
+  isolation: isolate;
+  transition: opacity 420ms ease, transform 700ms ease;
+  z-index: 25;
 
+}
+
+.cave-exit.is-open {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.cave-exit::before,
+.cave-exit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.cave-exit::before {
+  inset: -30%;
+  border: 4px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+}
+
+.cave-exit::after {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.45) 45%, rgba(255, 255, 255, 0) 72%);
+  opacity: 0;
+}
+
+.cave-exit.is-open::before {
+  animation: cavePortalOpen 1.7s ease-out 1 forwards;
+}
+
+.cave-exit.is-open::after {
+  animation: cavePortalCore 1.4s ease-out 1 forwards;
+}
+
+@keyframes cavePortalOpen {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+
+  35% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes cavePortalCore {
+  0%,
+  100% {
+    transform: scale(0.82);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.95;
+  }
+}
+
+.work-history-section {
+  position: relative;
+  z-index: 30;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: -72px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 9rem 1.25rem 6rem;
+}
+
+.work-history-shell {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.work-history-kicker {
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.work-history-title {
+  margin-top: 0.65rem;
+  margin-bottom: 2rem;
+  font-size: clamp(2rem, 4.8vw, 3rem);
+  color: #020617;
+}
+
+.work-role {
+  border: 1px solid #dbe3ee;
+  border-radius: 20px;
+  padding: 1.25rem;
+  background: #f8fafc;
+  margin-bottom: 1rem;
+}
+
+.work-role h3 {
+  color: #0f172a;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin: 0 0 0.45rem;
+}
+
+.work-date {
+  margin: 0 0 0.85rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+.work-role ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.work-role li {
+  margin-bottom: 0.55rem;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.work-role.compact p {
+  margin: 0.35rem 0;
+  line-height: 1.5;
+  color: #0f172a;
 }
 
 
@@ -927,6 +1118,101 @@ span,
 button,
 article {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (max-width: 640px) {
+  .mountain-back {
+    top: 8vh;
+    height: 120vh;
+    clip-path: polygon(-30% 56%, -10% 48%, 12% 54%, 34% 44%, 56% 52%, 78% 42%, 102% 50%, 124% 44%, 124% 100%, -30% 100%);
+  }
+
+  .mountain-mid {
+    top: 12vh;
+    height: 120vh;
+    clip-path: polygon(-30% 62%, -8% 52%, 16% 60%, 40% 48%, 62% 58%, 84% 46%, 104% 56%, 124% 50%, 124% 100%, -30% 100%);
+  }
+
+  .mountain-front {
+    top: 16vh;
+    height: 120vh;
+    clip-path: polygon(-34% 66%, -10% 56%, 18% 64%, 44% 50%, 68% 62%, 90% 48%, 108% 58%, 126% 54%, 126% 100%, -34% 100%);
+  }
+
+  .mountain-transition {
+    height: 38vh;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .cave-section {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    min-height: 320vh;
+  }
+
+  .cave-exit {
+    width: min(760px, 145vw);
+    height: clamp(150px, 26vh, 230px);
+    bottom: -68px;
+  }
+
+  .mountain-descent,
+  .cave {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .crystal {
+    width: min(320px, 92vw);
+    min-height: 260px;
+  }
+
+  .crystal-label {
+    inset: 8%;
+    padding: 1rem;
+    font-size: 0.82rem;
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+  }
+
+  .cave-mountain-back,
+  .cave-mountain-mid,
+  .cave-mountain-front,
+  .cave-mountain-bottom-back,
+  .cave-mountain-bottom-mid,
+  .cave-mountain-bottom-front {
+    height: 120vh;
+  }
+
+  .cave-mountain-back,
+  .cave-mountain-bottom-back {
+    clip-path: polygon(-30% 56%, -10% 48%, 12% 54%, 34% 44%, 56% 52%, 78% 42%, 102% 50%, 124% 44%, 124% 100%, -30% 100%);
+  }
+
+  .cave-mountain-mid,
+  .cave-mountain-bottom-mid {
+    clip-path: polygon(-30% 62%, -8% 52%, 16% 60%, 40% 48%, 62% 58%, 84% 46%, 104% 56%, 124% 50%, 124% 100%, -30% 100%);
+  }
+
+  .cave-mountain-front,
+  .cave-mountain-bottom-front {
+    clip-path: polygon(-34% 66%, -10% 56%, 18% 64%, 44% 50%, 68% 62%, 90% 48%, 108% 58%, 126% 54%, 126% 100%, -34% 100%);
+  }
+
+  .work-history-section {
+    margin-top: -48px;
+    padding: 6.2rem 1rem 4.5rem;
+  }
+
+  .work-role {
+    border-radius: 16px;
+    padding: 1rem;
+  }
+
+  .work-role h3 {
+    font-size: 1rem;
+  }
 }
 </style>
 ```
