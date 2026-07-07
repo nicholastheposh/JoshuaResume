@@ -120,6 +120,10 @@ onUnmounted(() => {
             class="rounded-2xl bg-pink-500 px-8 py-4 text-base font-semibold text-slate-950 shadow-2xl shadow-pink-500/30 transition duration-300 hover:-translate-y-1 hover:bg-pink-400">
             View Projects
           </a>
+          <a href="#work-history"
+            class="rounded-2xl border border-pink-400/50 bg-pink-500/20 px-8 py-4 text-base font-semibold text-pink-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:bg-pink-500/30">
+            View Work History
+          </a>
           <a href="/resume/Resume%206-3.pdf" download="Joshua_Bederaux-Cayne_Resume.pdf"
             class="rounded-2xl border border-pink-500/30 bg-slate-900/85 px-8 py-4 text-base font-semibold text-pink-200 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:bg-slate-900">
             Resume
@@ -216,11 +220,11 @@ onUnmounted(() => {
           </div>
 
           <div class="crystal crystal2">
-            <div class="crystal-label"><br><br><br>Manufacturing <br> data czar, integrated data from Quality SPC
-              software, Azure Data lake, Computer Vision systems, PLC's, and Manufacturing execution <br>software </div>
+            <div class="crystal-label"><br><br>Manufacturing <br> data czar, integrated data from Quality SPC
+              software, Azure Data lake, Computer Vision systems, PLC's, and Manufacturing <br> execution <br>software </div>
           </div>
           <div class="crystal crystal3">
-            <div class="crystal-label"><br><br>Developed <br>a data transfer <br> from am engineering problem tracking
+            <div class="crystal-label"><br><br>Developed <br>a data transfer <br> from an engineering problem tracking
               Node.js/Sharepoint<br> web Application <br>into the company wide knowledge base <br>filtering out private
               <br>communications
             </div>
