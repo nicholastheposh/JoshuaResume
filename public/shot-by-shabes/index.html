@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shot Shabys — Bullet Reveal</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ LOGO BULLET REVEAL ============ -->
+  <section class="stage">
+    <div class="logo-frame" id="logoFrame">
+      <div class="logo-plate">
+
+        <!-- Real exported layers from Shot by Shabes logo v2.ai, all 1585x826 and pixel-aligned -->
+        <img class="logo-layer logo-text" src="assets/layer-text.png" alt="Shot Shabys sign" />
+        <img class="logo-layer logo-trail" src="assets/layer-trail.png" alt="" />
+        <img class="logo-layer logo-bullet" id="bullet" src="assets/layer-bullet.png" alt="" />
+
+        <div class="impact-flash"></div>
+        <div class="spark-burst" id="sparkBurst"></div>
+      </div>
+    </div>
+    <button class="replay-btn" id="replayLogo">Don't Gamble Slot Machine</button>
+    <div class="easter-egg" id="easterEgg" aria-live="polite"></div>
+    <div class="dice-result" id="diceResult" aria-live="polite"></div>
+
+    <div class="prime-panel" id="primePanel">
+      <div class="prime-title">Primes 🍖</div>
+      <div class="prime-list" id="primeList"></div>
+    </div>
+
+    <div class="dice-entry">
+      <div class="entry-group">
+        <span class="entry-label">Dice</span>
+        <div class="stepper">
+          <button class="step-btn" data-target="ctlCount" data-step="1" aria-label="increase dice">▲</button>
+          <input type="number" id="ctlCount" min="-9999" max="9999" value="4">
+          <button class="step-btn" data-target="ctlCount" data-step="-1" aria-label="decrease dice">▼</button>
+        </div>
+        <div class="quick-steps" hidden>
+          <div class="qs-row">
+            <button data-target="ctlCount" data-step="10">+10</button>
+            <button data-target="ctlCount" data-step="100">+100</button>
+            <button data-target="ctlCount" data-step="1000">+1000</button>
+          </div>
+          <div class="qs-row">
+            <button data-target="ctlCount" data-step="-10">−10</button>
+            <button data-target="ctlCount" data-step="-100">−100</button>
+            <button data-target="ctlCount" data-step="-1000">−1000</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-group">
+        <span class="entry-label">Sides</span>
+        <div class="stepper">
+          <button class="step-btn" data-target="ctlSides" data-step="1" aria-label="increase sides">▲</button>
+          <input type="number" id="ctlSides" min="-99" max="99" value="4">
+          <button class="step-btn" data-target="ctlSides" data-step="-1" aria-label="decrease sides">▼</button>
+        </div>
+        <div class="quick-steps" hidden>
+          <div class="qs-row">
+            <button data-target="ctlSides" data-step="10">+10</button>
+            <button data-target="ctlSides" data-step="100">+100</button>
+            <button data-target="ctlSides" data-step="1000">+1000</button>
+          </div>
+          <div class="qs-row">
+            <button data-target="ctlSides" data-step="-10">−10</button>
+            <button data-target="ctlSides" data-step="-100">−100</button>
+            <button data-target="ctlSides" data-step="-1000">−1000</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="more-btn" id="moreBtn" hidden>More options ▾</button>
+    </div>
+
+    <div class="dice-controls" id="advancedControls" hidden>
+      <label>Spread ° <input type="range" id="ctlSpread" min="10" max="90" value="30"></label>
+      <label>Distance min <input type="range" id="ctlDistMin" min="20" max="300" value="120"></label>
+      <label>Distance max <input type="range" id="ctlDistMax" min="60" max="400" value="260"></label>
+      <label>Scale min <input type="range" id="ctlScaleMin" min="0.5" max="3" step="0.1" value="1.4"></label>
+      <label>Scale max <input type="range" id="ctlScaleMax" min="1" max="4" step="0.1" value="2.4"></label>
+      <label>Tumble s <input type="range" id="ctlTumbleDur" min="0.1" max="1.5" step="0.05" value="0.55"></label>
+      <label>Surge s <input type="range" id="ctlSurgeDur" min="0.1" max="1.5" step="0.05" value="0.5"></label>
+      <label>Tumble delay s <input type="range" id="ctlTumbleDelay" min="0" max="1" step="0.05" value="0.4"></label>
+    </div>
+  </section>
+
+  <!-- ============ YOUTUBE ============ -->
+  <section class="info-section" id="video">
+    <h2>Watch</h2>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/s4jfFyfyYY0" title="Shot by Shabes" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="social-links">
+      <a href="https://youtu.be/s4jfFyfyYY0?si=JdKqbRnHyQ-Il5Yx" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/kidsofthesky/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </section>
+
+  <!-- ============ BIO ============ -->
+  <section class="info-section" id="bio">
+    <h2>Bio</h2>
+    <p>Shot by Shabes — a visual storyteller behind the lens. Music videos, promos, and edits with a sharp, confident cut. Add your bio here.</p>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="info-section" id="pricing">
+    <h2>Pricing</h2>
+    <div class="price-grid">
+      <div class="price-card"><h3>Music Video</h3><p class="price">$800–1000</p><p>Full production edit with effects.</p></div>
+      <div class="price-card"><h3>Edits</h3><p class="price">$50–300</p><p>Short-form cuts and quick turnarounds.</p></div>
+      <div class="price-card"><h3>Wedding Videography</h3><p class="price">$700–900</p><p>Ceremony to reception, full-day coverage.</p></div>
+      <div class="price-card"><h3>Promo Package</h3><p class="price">$1000</p><p><em>Bederaux-Harris Entertainment</em> services signature product. The 1k Dejaye DJ (Dejaye Harris) and Shot By Shabes (Joshua Bederaux-Cayne) wombo combo. We're professional, chill fiancés who are creatively engaged.</p></div>
+    </div>
+  </section>
+
+  <canvas class="dice-canvas" id="diceCanvas"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

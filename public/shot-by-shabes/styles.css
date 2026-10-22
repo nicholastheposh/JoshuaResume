@@ -1,0 +1,425 @@
+:root {
+  --ink: #0b0b0b;
+  --gold: #F5C518;
+  --paper: #121212;
+  --fg: #f4f4f4;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% -10%, #1d1d1d, #0a0a0a 60%);
+  color: var(--fg);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 100px;
+  gap: 64px;
+}
+
+.stage {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.info-section {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  padding: 24px;
+  background: #141414;
+  border: 1px solid #262626;
+  border-radius: 16px;
+}
+.info-section h2 {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.info-section p { opacity: 0.8; line-height: 1.5; margin: 0; }
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+}
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.social-links {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+}
+.social-links a {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  padding: 6px 14px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.social-links a:hover { border-color: var(--gold); background: #242414; }
+
+.price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.price-card {
+  background: #1b1b1b;
+  border: 1px solid #2e2e2e;
+  border-radius: 12px;
+  padding: 16px;
+}
+.price-card h3 { margin: 0 0 6px; font-size: 1rem; }
+.price-card .price { color: var(--gold); font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; }
+.price-card p:last-child { font-size: 0.85rem; }
+.stage h2 { margin: 0; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75; }
+
+/* ---------------- LOGO / BULLET SEQUENCE ---------------- */
+.replay-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.replay-btn:hover { background: var(--gold); color: var(--ink); }
+
+.logo-frame {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.logo-plate {
+  position: relative;
+  width: min(52%, 560px);
+  aspect-ratio: 1585 / 826;
+  border-radius: 28px;
+  overflow: visible; /* reveals the bullet approaching and debris exiting past the artwork's edges */
+  box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+}
+
+.logo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.logo-trail {
+  clip-path: inset(0 100% 0 0); /* hidden until torn open by the bullet's pass */
+}
+
+.logo-bullet {
+  transform: translateX(-115%); /* staged off-frame left; its own pixels are already the resting artwork position */
+}
+
+.impact-flash {
+  position: fixed; /* cover the whole viewport so the hit reads as a full-screen pop */
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 50;
+}
+
+.spark-burst {
+  position: absolute;
+  top: 50%;
+  left: 93%; /* the sign's right edge, where the bullet exits and sheds debris */
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 5;
+}
+.spark-burst span {
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.55)); /* white die with a drop shadow */
+}
+/* default debris: a triangle */
+.spark-burst span.triangle {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid #fff;
+  background: none;
+}
+/* negative-sided debris: a caltrop of three crossed lines */
+.spark-burst span.caltrop {
+  width: 18px;
+  height: 18px;
+}
+.spark-burst span.caltrop i {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px;
+  height: 100%;
+  background: #fff;
+  transform-origin: 50% 50%;
+}
+.spark-burst span.debris-white {
+  filter: drop-shadow(0 0 6px rgba(245,197,24,0.9)); /* black die with a gold glow */
+}
+.spark-burst span.debris-white.triangle { border-bottom-color: var(--ink); }
+.spark-burst span.debris-white.caltrop i { background: var(--ink); }
+.spark-burst span.shape-gone { opacity: 0 !important; filter: none; } /* debris falls away, leaving just the number */
+
+.die-number {
+  position: absolute;
+  top: 50%; left: 50%; /* centered on the die */
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--ink); /* black number on the white die */
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.4);
+  z-index: 2;
+}
+.die-number.on-dark {
+  color: var(--gold); /* gold number on the black die */
+  text-shadow: 0 0 4px rgba(245,197,24,0.6);
+}
+
+.dice-result {
+  margin-top: 6px;
+  min-height: 2rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  display: flex;
+  flex-wrap: wrap; /* wrap long equations instead of overflowing */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  max-width: 720px;
+  line-height: 1.35;
+}
+.dice-result .op { opacity: 0.6; font-weight: 400; }
+.dice-result .sum {
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+}
+.dice-result .eq-line { display: inline; }
+
+.dice-controls {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px 14px;
+  width: 100%;
+  max-width: 720px;
+  padding: 14px 16px;
+  background: #141414;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  font-size: 0.78rem;
+}
+.dice-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+}
+.dice-controls input[type="range"] { width: 100%; accent-color: var(--gold); }
+.dice-controls input[type="number"] {
+  width: 60px;
+  background: #1d1d1d;
+  color: var(--fg);
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 3px 6px;
+}
+
+/* ---- Primary dice entry: gold box + steppers + quick steps ---- */
+.dice-entry {
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.entry-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.entry-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.stepper {
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(160deg, #1a1a1a, #0e0e0e);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(245,197,24,0.25), 0 6px 18px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.stepper input[type="number"] {
+  width: 110px;
+  padding: 10px 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--gold);
+  background: transparent;
+  border: none;
+  outline: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.stepper input[type="number"]::-webkit-inner-spin-button,
+.stepper input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.step-btn {
+  width: 40px;
+  background: rgba(245,197,24,0.12);
+  color: var(--gold);
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.step-btn:hover { background: rgba(245,197,24,0.28); }
+
+.quick-steps { display: flex; flex-direction: column; gap: 6px; }
+.qs-row { display: flex; gap: 6px; }
+.quick-steps button {
+  flex: 1;
+  background: #1d1d1d;
+  color: var(--gold);
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.quick-steps button:hover { border-color: var(--gold); background: #242414; }
+
+/* the hidden attribute must beat the display rules above so these stay collapsed until revealed */
+.quick-steps[hidden], .dice-controls[hidden], .more-btn[hidden] { display: none !important; }
+
+.more-btn {
+  align-self: center;
+  background: transparent;
+  border: 1px solid #3a3a3a;
+  color: var(--fg);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.more-btn:hover { opacity: 1; border-color: var(--gold); }
+
+.dice-canvas {
+  position: fixed; /* full-viewport overlay so debris is never clipped by any container */
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.logo-plate.inverted { filter: invert(1); }
+
+/* Power-level gag banner */
+.power-gag {
+  margin-top: 8px;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(245,197,24,0.6), 0 2px 0 #000;
+  animation: gagPulse 0.9s ease-in-out infinite alternate;
+}
+@keyframes gagPulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+
+.easter-egg {
+  min-height: 1.4rem;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.9;
+}
+
+.prime-panel {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  min-width: 90px;
+  background: #141414;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  display: none;
+  z-index: 30;
+}
+.prime-panel.active { display: block; }
+.prime-title {
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.prime-list { display: flex; flex-direction: column; gap: 3px; max-height: 40vh; overflow-y: auto; }
+.prime-entry {
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  background: #1f1f1f;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+.prime-entry .prime-count { color: var(--gold); }
