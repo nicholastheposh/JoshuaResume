@@ -60,6 +60,81 @@ function isPrime(n) {
   return true;
 }
 
+/* ---------- palindrome highlighting ---------- */
+function isPalindrome(n) {
+  const s = String(Math.abs(n));
+  // need at least 3 digits so two-number palindromes (11, 22, 88...) don't count
+  return s.length > 2 && s === s.split("").reverse().join("");
+}
+
+// Rarity tiers by how many times the same palindrome repeats in a roll
+const PAL_TIERS = [
+  { min: 1, color: "#35d461", name: "green" },      // least rare
+  { min: 2, color: "#f2d518", name: "yellow" },
+  { min: 3, color: "#f04b3a", name: "red" },
+  { min: 4, color: "#ff5fd0", name: "pink" },
+  { min: 6, color: "#b26bff", name: "purple" },
+  { min: 9, color: "#2ee6ff", name: "neon-blue" },  // most rare
+];
+
+function palTierColor(count) {
+  let color = PAL_TIERS[0].color;
+  for (const t of PAL_TIERS) if (count >= t.min) color = t.color;
+  return color;
+}
+
+function recordPalindromes(values, total) {
+  const panel = document.getElementById("palPanel");
+  const list = document.getElementById("palList");
+  if (!panel || !list) return;
+  list.innerHTML = "";
+
+  const counts = {};
+  values.forEach((n) => {
+    if (isPalindrome(n)) counts[n] = (counts[n] || 0) + 1;
+  });
+  // the roll's total counts as a palindrome entry too (e.g. 1 + 22 + 303 + 22 + 1 = 349... or a pal total)
+  const totalIsPal = typeof total === "number" && isPalindrome(total);
+  const pals = Object.keys(counts).map(Number).sort((a, b) => a - b);
+  if (!pals.length && !totalIsPal) {
+    panel.classList.remove("active");
+    return;
+  }
+  panel.classList.add("active");
+
+  let maxCount = 0;
+  pals.forEach((p) => {
+    const c = counts[p];
+    if (c > maxCount) maxCount = c;
+    const color = palTierColor(c);
+    const el = document.createElement("span");
+    el.className = "pal-entry";
+    el.style.setProperty("--pal-color", color);
+    el.innerHTML = `${p} × <b class="pal-count">0</b>`;
+    list.appendChild(el);
+    const counter = { n: 0 };
+    gsap.to(counter, {
+      n: c,
+      duration: Math.min(0.6, 0.08 * c),
+      ease: "power2.out",
+      onUpdate: () => { el.querySelector(".pal-count").textContent = Math.round(counter.n); },
+    });
+  });
+
+  // flag a palindromic total separately, marked as the sum
+  if (totalIsPal) {
+    const el = document.createElement("span");
+    el.className = "pal-entry pal-total";
+    el.style.setProperty("--pal-color", palTierColor(2));
+    el.innerHTML = `Σ ${total}`;
+    list.appendChild(el);
+    maxCount = Math.max(maxCount, 2);
+  }
+
+  // A big palindrome haul triggers the Weird Al gag
+  if (maxCount >= 3) showEgg("Weird Al Bob Dylan Parody 🎤");
+}
+
 function recordPrimes(values) {
   // tally only primes above 7, as "prime × count" entries
   const counts = {};
@@ -93,6 +168,23 @@ function recordPrimes(values) {
   showEgg("Prime Number Prime Rib 🍖");
 }
 
+function recordStats(values) {
+  if (!values.length) return;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  const median = sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+  const mean = values.reduce((a, b) => a + b, 0) / values.length;
+  const freq = {};
+  let mode = values[0], maxF = 0;
+  values.forEach((n) => {
+    freq[n] = (freq[n] || 0) + 1;
+    if (freq[n] > maxF) { maxF = freq[n]; mode = n; }
+  });
+  document.getElementById("statMedian").textContent = median;
+  document.getElementById("statMean").textContent = mean.toFixed(2).replace(/\.?0+$/, "");
+  document.getElementById("statMode").textContent = mode;
+}
+
 function showEgg(message) {
   document.getElementById("easterEgg").textContent = message;
 }
@@ -107,7 +199,16 @@ function renderEquation(values) {
 
   const CHARS_PER_LINE = 100;
   const joiner = subtracting ? " - " : " + ";
-  const parts = values.map((v) => `${v}`); // each die's rolled value, e.g. 3 + 4 + 3 + 1
+  // tally palindromes up front so each number can be highlighted by its rarity tier
+  const palCounts = {};
+  values.forEach((n) => { if (isPalindrome(n)) palCounts[n] = (palCounts[n] || 0) + 1; });
+  const parts = values.map((v) => {
+    if (isPalindrome(v)) {
+      const c = palTierColor(palCounts[v]);
+      return `<mark class="pal" style="--pal-color:${c}">${v}</mark>`;
+    }
+    return `${v}`;
+  }); // each die's rolled value, e.g. 3 + 4 + 3 + 1
   const lines = [];
   let current = "";
   parts.forEach((part, i) => {
@@ -123,6 +224,8 @@ function renderEquation(values) {
   lines.push(`= ${total}`);
 
   recordPrimes(values); // log any prime rolls to the side panel
+  recordPalindromes(values, total); // highlight palindromes, including a palindromic total
+  recordStats(values); // median / mean / mode next to the prime & palindrome panels
 
   // All lines shrink together so no line is bigger than another as more are added
   const lineCount = lines.length;
@@ -131,7 +234,7 @@ function renderEquation(values) {
     const div = document.createElement("div");
     const isSum = i === lines.length - 1;
     div.className = isSum ? "eq-line sum" : "eq-line";
-    div.textContent = text;
+    div.innerHTML = text; // palindrome numbers are wrapped in <mark> highlights
     if (!isSum) div.style.fontSize = `${fontSize}rem`; // sum stays at its large title size
     result.appendChild(div);
   });

@@ -1,4 +1,3 @@
-```vue
 <script setup lang="ts">
 import { useHead } from '#imports'
 useHead({
@@ -320,8 +319,11 @@ onUnmounted(() => {
             <p><strong>February 26, 2017 - July 16, 2017:</strong> Indiana University / Manpower, Bloomington Indiana - Custodian.</p>
             <p><strong>May 23, 2016 - August 30, 2016:</strong> Taco Bell, Bloomington Indiana.</p>
             <p><strong>August 2014 - March 2015:</strong> Crew's Carwash, Columbus Indiana.</p>
+            
             <p><strong>May 2011:</strong> Internship at Nintendo of Australia, Scoresby Victoria.</p>
+            
           </article>
+          
         </div>
       </section>
     </main>
@@ -1141,4 +1143,3 @@ article {
   }
 }
 </style>
-```

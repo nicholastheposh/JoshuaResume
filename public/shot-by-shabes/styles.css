@@ -21,6 +21,20 @@ body {
   gap: 64px;
 }
 
+.site-nav {
+  width: 100%;
+  max-width: 1200px;
+}
+.site-nav a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  text-decoration: underline;
+}
+
 .stage {
   width: 100%;
   max-width: 1200px;
@@ -391,10 +405,19 @@ body {
   opacity: 0.9;
 }
 
-.prime-panel {
+.side-stats {
   position: fixed;
   top: 90px;
   right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 30;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+
+.prime-panel {
   min-width: 90px;
   background: #141414;
   border: 1px solid #333;
@@ -402,7 +425,6 @@ body {
   padding: 10px 12px;
   font-size: 0.8rem;
   display: none;
-  z-index: 30;
 }
 .prime-panel.active { display: block; }
 .prime-title {
@@ -423,3 +445,60 @@ body {
   padding: 2px 6px;
 }
 .prime-entry .prime-count { color: var(--gold); }
+
+/* ---- Palindrome panel: mirrors the prime panel, stacked in the right column ---- */
+.pal-panel {
+  min-width: 90px;
+  background: #141414;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  display: none;
+}
+.pal-panel.active { display: block; }
+.pal-title {
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.pal-list { display: flex; flex-direction: column; gap: 3px; max-height: 40vh; overflow-y: auto; }
+.pal-entry {
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  background: #1f1f1f;
+  border-radius: 6px;
+  padding: 2px 6px;
+  border-left: 3px solid var(--pal-color, #35d461);
+}
+.pal-entry .pal-count { color: var(--pal-color, #35d461); }
+
+/* palindrome highlight inside the equation */
+.dice-result mark.pal {
+  background: transparent;
+  color: var(--pal-color);
+  font-weight: 800;
+  text-shadow: 0 0 6px var(--pal-color);
+}
+
+/* ---- Stats panel: median / mean / mode, stacked in the right column ---- */
+.stats-panel {
+  min-width: 90px;
+  background: #141414;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.8rem;
+}
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 0;
+}
+.stat-row span { opacity: 0.7; }
+.stat-row b { color: var(--gold); }
