@@ -74,10 +74,11 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
-### Static hosting (including Cloudflare Pages)
+### Static hosting
 
-For static hosting, set the build command to `npm run generate` and the build
-output directory to `.output/public`. This generates the resume at `/` and
-copies the Shot by Shabes site to `/shot-by-shabes/` with its scripts and images.
-Publish the generated directory through the hosting provider; building locally
-does not deploy the site.
+For Cloudflare Pages, set the build command to `npm run generate` and the build
+output directory to `dist`. Nuxt detects Cloudflare Pages and writes its static
+output to `dist`; a local build outside Cloudflare normally uses `.output/public`
+instead. This generates the resume at `/` and copies the Shot by Shabes site to
+`/shot-by-shabes/` with its scripts and images. Publish through the hosting
+provider; building locally does not deploy the site.
