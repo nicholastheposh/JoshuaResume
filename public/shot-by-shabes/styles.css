@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 20px 100px;
+  padding: 48px 20px 0;
   gap: 64px;
 }
 
@@ -88,6 +88,102 @@ body {
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .social-links a:hover { border-color: var(--gold); background: #242414; }
+
+.portfolio {
+  width: 100%;
+  max-width: 1200px;
+}
+.portfolio-heading { margin-bottom: 24px; }
+.portfolio-heading p {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.portfolio-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-transform: uppercase;
+}
+.portfolio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.portfolio-card {
+  width: min(90%, 940px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 22px;
+  background: #f4f4f4;
+  color: var(--ink);
+}
+.portfolio-card:nth-child(even) {
+  align-self: flex-end;
+  background: var(--gold);
+}
+.portfolio-card:nth-child(even) img { order: 1; }
+.portfolio-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+.portfolio-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 48px);
+}
+.portfolio-copy p { margin: 0; line-height: 1.6; }
+.portfolio-copy .portfolio-category {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.portfolio-copy h3 { margin: 10px 0 16px; font-size: clamp(1.7rem, 3vw, 2.5rem); }
+.portfolio-copy .portfolio-details {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.portfolio-copy a {
+  margin-top: 18px;
+  color: var(--ink);
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+.portfolio-copy a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.site-footer {
+  align-self: stretch;
+  margin: 0 -20px;
+  background: #f4f4f4;
+  color: var(--ink);
+  text-align: center;
+}
+.site-footer p {
+  margin: 0;
+  padding: 32px 20px;
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.warning-stripes {
+  height: 32px;
+  background: repeating-linear-gradient(135deg, var(--gold) 0 24px, #f4f4f4 24px 48px);
+}
+@media (max-width: 650px) {
+  .portfolio-card { width: 100%; grid-template-columns: 1fr; }
+  .portfolio-card:nth-child(even) img { order: 0; }
+  .portfolio-card img { height: 240px; min-height: 0; }
+}
 
 .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
 .price-card {
