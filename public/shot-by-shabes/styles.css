@@ -43,6 +43,14 @@ body {
   align-items: center;
   gap: 20px;
 }
+.brand-title {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
 
 .info-section {
   width: 100%;
@@ -160,6 +168,48 @@ body {
   text-underline-offset: 4px;
 }
 .portfolio-copy a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.bio-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.65fr);
+  gap: clamp(24px, 5vw, 60px);
+}
+.bio-copy p + p { margin-top: 16px; }
+.bio-copy h2:not(:first-child) { margin-top: 32px; }
+.name-story {
+  padding: 24px;
+  border: 1px solid #66531a;
+  border-radius: 16px;
+  background: #1b1b1b;
+}
+.name-story h3 { margin: 0 0 10px; color: var(--gold); }
+.name-steps {
+  display: grid;
+  gap: 18px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.name-steps li {
+  display: grid;
+  gap: 5px;
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+}
+.name-steps span { color: #d3d3d3; font-size: 0.8rem; }
+.name-steps strong { color: #fff; font-size: 1.1rem; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .name-steps li {
+      animation: name-reveal both linear;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+@keyframes name-reveal {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
 .site-footer {
   align-self: stretch;
   margin: 0 -20px;
@@ -175,14 +225,36 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+.site-footer a { color: inherit; text-decoration: none; }
+.site-footer a:hover,
+.site-footer a:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
 .warning-stripes {
   height: 32px;
   background: repeating-linear-gradient(135deg, var(--gold) 0 24px, #f4f4f4 24px 48px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  body.is-counting :is(.brand-title, .site-nav a, .replay-btn, .entry-label, .dice-result, .dice-result .sum, .easter-egg, .prime-title, .prime-entry, .prime-entry .prime-count, .pal-title, .stat-row, .stat-row b, .portfolio-heading p, .portfolio-heading h2, .info-section h2, .bio-copy p, .name-story h3, .name-story p, .name-steps span, .name-steps strong, .price-card h3, .price-card p, .social-links a) {
+    animation: counting-colors 1.4s ease-in-out infinite alternate;
+  }
+  body.is-counting .warning-stripes {
+    animation: counting-stripes 1.4s ease-in-out infinite alternate;
+  }
+}
+@keyframes counting-colors {
+  0% { color: #fff; }
+  50% { color: #f5c518; }
+  100% { color: #9de7ff; }
+}
+@keyframes counting-stripes {
+  0% { background-position: 0 0; filter: brightness(1); }
+  50% { filter: brightness(1.25); }
+  100% { background-position: 34px 0; filter: brightness(1); }
 }
 @media (max-width: 650px) {
   .portfolio-card { width: 100%; grid-template-columns: 1fr; }
   .portfolio-card:nth-child(even) img { order: 0; }
   .portfolio-card img { height: 240px; min-height: 0; }
+  .bio-layout { grid-template-columns: 1fr; }
 }
 
 .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }

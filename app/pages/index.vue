@@ -175,11 +175,11 @@ onUnmounted(() => {
 
         <div class="mt-10 grid gap-6 lg:grid-cols-3">
           <a href="/shot-by-shabes/"
-            class="block rounded-[2rem] border border-pink-500/10 bg-slate-900/85 p-8 shadow-2xl shadow-pink-500/10 transition duration-500 hover:-translate-y-1 hover:border-pink-400/30">
-            <h3 class="text-2xl font-semibold text-pink-300">Shot by Shabes</h3>
-            <p class="mt-4 text-slate-400">Interactive logo reveal — a bullet rips through the sign, shedding dice
+            class="block rounded-[2rem] border border-yellow-400 bg-black p-9 shadow-[0_0_30px_rgba(245,197,24,0.5)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_0_45px_rgba(245,197,24,0.75)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-400 lg:scale-105">
+            <h3 class="text-2xl font-semibold text-white">Shot by Shabes</h3>
+            <p class="mt-4 text-gray-200">Interactive logo reveal — a bullet rips through the sign, shedding dice
               debris with live GSAP motion and slot-machine logic.</p>
-            <span class="mt-4 inline-block text-sm font-semibold text-pink-300">Open project →</span>
+            <span class="mt-4 inline-block text-sm font-semibold text-white">Open project →</span>
           </a>
 
           <article

@@ -23,6 +23,8 @@ const POWER_GAG_UNDER = "NO IT'S NOT UNDER THAT POWER LEVEL";
 const CANVAS_DIE_THRESHOLD = 60; // above this many dice, render debris on canvas instead of DOM
 
 let sixtyNineCount = 0; // how many times 69 has been entered, so the joke escalates then resets
+let currentRoll = 0;
+let countingEffectTimer;
 
 function checkEasterEggs(value) {
   const egg = document.getElementById("easterEgg");
@@ -189,7 +191,7 @@ function showEgg(message) {
   document.getElementById("easterEgg").textContent = message;
 }
 
-function renderEquation(values) {
+function renderEquation(values, roll) {
   const result = document.getElementById("diceResult");
   result.innerHTML = "";
   const sum = values.reduce((a, b) => a + b, 0);
@@ -240,6 +242,11 @@ function renderEquation(values) {
   });
 
   gsap.from(result.children, { opacity: 0, y: 10, duration: 0.3, stagger: 0.05, ease: "power2.out" });
+  if (roll === currentRoll) {
+    countingEffectTimer = gsap.delayedCall(0.65, () => {
+      document.body.classList.remove("is-counting");
+    });
+  }
 }
 
 /* ---------- small-count DOM dice path ---------- */
@@ -385,6 +392,9 @@ function runCanvasDice(count, values) {
 }
 
 function playLogoSequence() {
+  const roll = ++currentRoll;
+  if (countingEffectTimer) countingEffectTimer.kill();
+  document.body.classList.remove("is-counting");
   const frame = document.getElementById("logoFrame");
   const plate = frame.querySelector(".logo-plate");
   const bullet = document.getElementById("bullet");
@@ -475,6 +485,10 @@ function playLogoSequence() {
       ease: "power2.out",
     }, "tunnel");
 
+  tl.call(() => {
+    if (roll === currentRoll) document.body.classList.add("is-counting");
+  }, null, `tunnel+=${CONFIG.tumbleDelay}`);
+
   if (!useCanvas) {
     // The horizontal boundary line sits along the top edge of the logo; debris that would
     // fly above it gets deflected down and bounces off it.
@@ -520,7 +534,7 @@ function playLogoSequence() {
     .addLabel("settle", `tunnel+=${CONFIG.tumbleDelay + CONFIG.tumbleDur + 0.15}`)
 
     // Numbers form the equation, then the whole debris die fades once it settles
-    .call(() => renderEquation(values), null, "settle+=0.35")
+    .call(() => renderEquation(values, roll), null, "settle+=0.35")
     .to(sparks, {
       opacity: 0,
       y: "+=12",
@@ -529,7 +543,7 @@ function playLogoSequence() {
   } else {
     // Canvas path: fire the debris burst, then drop straight to the equation
     tl.call(() => runCanvasDice(count, values), null, `tunnel+=${CONFIG.tumbleDelay}`)
-      .call(() => renderEquation(values), null, `tunnel+=${CONFIG.tumbleDelay + Math.min(CONFIG.tumbleDur, 0.8) + CONFIG.surgeDur + 0.2}`);
+      .call(() => renderEquation(values, roll), null, `tunnel+=${CONFIG.tumbleDelay + Math.min(CONFIG.tumbleDur, 0.8) + CONFIG.surgeDur + 0.2}`);
   }
 
   window.__logoTl = tl; // exposed for deterministic frame-by-frame capture during video export
